@@ -1,6 +1,33 @@
+/* general */
 * {
   margin: 0;
   padding: 0;
+}
+
+/* custom scrollbar styling */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F0E8C2;
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #573A37;
+  border-radius: 6px;
+  border: 2px solid #F0E8C2;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #291B1A;
+}
+
+/* firefox scrollbar styling */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #573A37 #F0E8C2;
 }
 
 :root {
@@ -14,6 +41,7 @@ body {
   background-size: cover;
 }
 
+/* page */
 #page {
   box-sizing: border-box;
   width: 800px;
@@ -25,6 +53,10 @@ body {
 
 img {
   border-radius: 16px;
+  width: 100%;
+  height: auto;
+  max-height: 300px;
+  object-fit: cover;
 }
 
 main {
@@ -67,9 +99,412 @@ footer {
 
 footer img {
   vertical-align: middle;
+  height: 1em;
+  width: auto;
 }
 
-/* mobile */
+/* search overlay */
+.search-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1001;
+  display: none;
+}
+
+.search-overlay.active {
+  display: block;
+}
+
+.search-menu {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.8);
+  width: 400px;
+  max-width: 90vw;
+  max-height: 500px;
+  background-color: #F0E8C2;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  z-index: 1002;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.search-menu.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.search-menu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid #d4c49b;
+}
+
+.search-menu-header h3 {
+  color: #291B1A;
+  font-size: 18px;
+  margin: 0;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #573A37;
+  cursor: pointer;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+}
+
+.close-btn:hover {
+  background-color: rgba(87, 58, 55, 0.1);
+}
+
+.search-input-container {
+  padding: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.search-input-container input {
+  flex: 1;
+  padding: 12px;
+  border: 1px solid #d4c49b;
+  border-radius: 8px;
+  font-family: 'Alice', serif;
+  color: #573A37;
+  background-color: white;
+}
+
+.search-input-container input:focus {
+  outline: none;
+  border-color: #573A37;
+}
+
+.search-submit-btn {
+  padding: 12px 20px;
+  background-color: #573A37;
+  color: #F0E8C2;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: 'Alice', serif;
+  transition: background-color 0.2s ease;
+}
+
+.search-submit-btn:hover {
+  background-color: #291B1A;
+}
+
+.search-results {
+  max-height: 300px;
+  overflow-y: auto;
+  padding: 0 20px 20px;
+}
+
+.search-results::-webkit-scrollbar {
+  width: 8px;
+}
+
+.search-results::-webkit-scrollbar-track {
+  background: rgba(212, 196, 155, 0.3);
+  border-radius: 4px;
+  margin: 8px 0;
+}
+
+.search-results::-webkit-scrollbar-thumb {
+  background: #573A37;
+  border-radius: 4px;
+}
+
+.search-results::-webkit-scrollbar-thumb:hover {
+  background: #291B1A;
+}
+
+.recipe-item {
+  display: flex;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin-bottom: 8px;
+}
+
+.recipe-item:hover {
+  background-color: rgba(87, 58, 55, 0.05);
+}
+
+.recipe-item img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.recipe-info h4 {
+  color: #291B1A;
+  font-size: 14px;
+  margin: 0 0 4px 0;
+  line-height: 1.3;
+}
+
+.recipe-info p {
+  color: #573A37;
+  font-size: 12px;
+  margin: 0;
+  opacity: 0.8;
+}
+
+.loading {
+  text-align: center;
+  padding: 20px;
+  color: #573A37;
+}
+
+.no-results {
+  text-align: center;
+  padding: 20px;
+  color: #573A37;
+  opacity: 0.7;
+}
+
+/* back button */
+.back-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #573A37;
+  color: #F0E8C2;
+  border: none;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-family: 'Alice', serif;
+  font-size: 14px;
+  cursor: pointer;
+  margin-bottom: 16px;
+  transition: background-color 0.2s ease;
+}
+
+.back-button:hover {
+  background-color: #291B1A;
+}
+
+.back-button svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* instructions list */
+.instructions-list {
+  padding-left: 24px;
+  line-height: 1.6;
+}
+
+.instructions-list li {
+  margin-bottom: 12px;
+  color: #573A37;
+}
+
+.instructions-text p {
+  color: #573A37;
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+/* welcome screen */
+.welcome-screen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  padding: 40px 20px;
+}
+
+.welcome-content {
+  text-align: center;
+  max-width: 500px;
+}
+
+.welcome-icon {
+  color: #573A37;
+  margin-bottom: 24px;
+}
+
+.welcome-content h1 {
+  color: #291B1A;
+  font-size: 32px;
+  margin-bottom: 16px;
+}
+
+.welcome-content p {
+  color: #573A37;
+  font-size: 18px;
+  margin-bottom: 32px;
+  line-height: 1.6;
+}
+
+.welcome-suggestions {
+  background-color: rgba(87, 58, 55, 0.05);
+  border-radius: 12px;
+  padding: 24px;
+  margin-top: 24px;
+}
+
+.welcome-suggestions h3 {
+  color: #291B1A;
+  font-size: 18px;
+  margin-bottom: 16px;
+}
+
+.suggestion-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}
+
+.suggestion-btn {
+  background-color: #573A37;
+  color: #F0E8C2;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-family: 'Alice', serif;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.suggestion-btn:hover {
+  background-color: #291B1A;
+  transform: translateY(-2px);
+}
+
+/* main search button */
+.main-search-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background-color: #573A37;
+  color: #F0E8C2;
+  border: none;
+  padding: 16px 32px;
+  border-radius: 25px;
+  font-family: 'Alice', serif;
+  font-size: 18px;
+  cursor: pointer;
+  margin: 0 auto 24px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(87, 58, 55, 0.3);
+}
+
+.main-search-btn:hover {
+  background-color: #291B1A;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(87, 58, 55, 0.4);
+}
+
+.main-search-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* loading screen */
+.loading-screen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  padding: 40px 20px;
+}
+
+.loading-content {
+  text-align: center;
+  max-width: 400px;
+}
+
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid #F0E8C2;
+  border-top: 4px solid #573A37;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 24px;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-content h2 {
+  color: #291B1A;
+  font-size: 24px;
+  margin-bottom: 12px;
+}
+
+.loading-content p {
+  color: #573A37;
+  font-size: 16px;
+  opacity: 0.8;
+}
+
+/* error screen */
+.error-screen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  padding: 40px 20px;
+}
+
+.error-content {
+  text-align: center;
+  max-width: 400px;
+}
+
+.error-icon {
+  font-size: 60px;
+  margin-bottom: 20px;
+}
+
+.error-content h2 {
+  color: #291B1A;
+  font-size: 24px;
+  margin-bottom: 12px;
+}
+
+.error-content p {
+  color: #573A37;
+  font-size: 16px;
+  margin-bottom: 24px;
+}
+
+/* responsiveness - mobile */
 @media (max-width: 480px) {
   #page {
     width: 95%;
@@ -107,9 +542,10 @@ footer img {
     width: 100%;
     height: auto;
   }
+
 }
 
-/* tablet */
+/* responsiveness - tablet */
 @media (min-width: 481px) and (max-width: 768px) {
   #page {
     width: 90%;
@@ -137,9 +573,10 @@ footer img {
   footer {
     padding-bottom: 40px;
   }
+
 }
 
-/* desktop small */
+/* responsiveness - small desktop */
 @media (min-width: 769px) and (max-width: 1024px) {
   #page {
     width: 85%;

@@ -19,67 +19,35 @@
 
 <body> <!-- page body (content) -->
   <div id="page">
+    <!-- tela inicial -->
+    <div class="welcome-screen">
+      <div class="welcome-content">
+        <div class="welcome-icon">
+          <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+          </svg>
+        </div>
+        <h1>Bem-vindo ao Livro de Receitas</h1>
+        <p>Descubra receitas incríveis de todo o mundo traduzidas para o português. Use o botão de busca para encontrar
+          a receita perfeita para você!</p>
 
-    <!-- background image -->
-    <img src="assets/main-image.jpg" alt="cupcake image">
+        <button class="main-search-btn" onclick="openSearchMenu()">
+          Buscar Receitas
+        </button>
 
-    <!-- main content -->
-    <main>
-
-      <!-- about section -->
-      <section id="about">
-        <h1>Cupcake de café com chantilly</h1>
-        <p>
-          O bolinho perfeito para acompanhar o café de todos os dias. É muito fácil e ainda por cima fica maravilhoso,
-          com certeza vai impressionar. Faz e depois me conta o que achou!
-        </p>
-        <p>
-          Tempo: 1h10 <br>
-          Rendimento: 12 porções <br>
-          Dificuldade: fácil
-        </p>
-      </section>
-
-      <!-- ingredients section -->
-      <section id="ingredients">
-        <h2>Ingredientes</h2>
-        <ul>
-          <li>1 e 1/2 xícara (chá) de água morna</li>
-          <li>1 colher (sopa) de café solúvel</li>
-          <li>3 ovos</li>
-          <li>1/2 xícara (chá) de óleo</li>
-          <li>2 xícaras (chá) de açúcar</li>
-          <li>2/3 de xícara (chá) de chocolate em pó</li>
-          <li>2 e 1/2 xícaras (chá) de farinha de trigo</li>
-          <li>1 colher (sopa) de fermento em pó químico</li>
-          <li>2 xícaras (chá) de chantilly pronto</li>
-          <li>Grãos de café para decorar</li>
-          <li>1 lata de leite condensado</li>
-          <li>1 colher (sopa) de café solúvel</li>
-          <li>1 colher (sopa) de chocolate em pó</li>
-          <li>2 colheres (sopa) de manteiga</li>
-        </ul>
-      </section>
-
-      <!-- preparation section -->
-      <section id="preparation">
-        <h2>Modo de preparo</h2>
-        <p>
-          No liquidificador, bata a água, o café solúvel, os ovos, o óleo, o açúcar e o chocolate em pó até ficar
-          homogêneo. Transfira para uma tigela, adicione a farinha e o fermento e misture com uma colher. Despeje em
-          forminhas para cupcakes forradas com forminhas de papel e coloque em uma fôrma grande, um ao lado do outro.
-          Leve ao forno médio, preaquecido, por 25 minutos ou até assar e dourar. Retire e deixe esfriar.
-          <br><br>
-          Para o recheio, leve todos os ingredientes ao fogo médio, mexendo bem até engrossar. Desligue, deixe esfriar e
-          coloque dentro de um saco de confeiteiro com bico perle. Reserve. Coloque o chantilly dentro de um saco de
-          confeiteiro com bico pitanga e reserve.
-          <br><br>
-          Para a montagem, faça um furo no centro dos cupcakes e recheie com o brigadeiro de café reservado. Decore as
-          superfícies dos cupcakes com o chantilly reservado, fazendo círculos. Decore com grãos de café e leve à
-          geladeira até o momento de servir.
-        </p>
-      </section>
-    </main>
+        <div class="welcome-suggestions">
+          <h3>Sugestões populares:</h3>
+          <div class="suggestion-buttons">
+            <button class="suggestion-btn" onclick="searchSuggestion('fish')">Peixe</button>
+            <button class="suggestion-btn" onclick="searchSuggestion('soup')">Sopa</button>
+            <button class="suggestion-btn" onclick="searchSuggestion('cake')">Bolos</button>
+            <button class="suggestion-btn" onclick="searchSuggestion('chicken')">Frango</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- footer -->
@@ -90,6 +58,23 @@
       por Maurício Valente Martins
     </p>
   </footer>
+
+
+  <!-- search overlay -->
+  <div id="search-menu" class="search-menu">
+    <div class="search-menu-header">
+      <h3>Buscar Receitas</h3>
+      <button id="close-search" class="close-btn">&times;</button>
+    </div>
+    <div class="search-input-container">
+      <input type="text" id="search-input" placeholder="Digite o nome da receita...">
+      <button id="search-btn" class="search-submit-btn">Buscar</button>
+    </div>
+    <div id="search-results" class="search-results"></div>
+  </div>
+  <div id="search-overlay" class="search-overlay"></div>
+
+  <script src="script.js"></script>
 </body>
 
 </html>
